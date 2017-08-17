@@ -1,0 +1,11 @@
+	public static Field getDeclaredField(Object object, String filedName){
+		
+		for(Class<?> superClass = object.getClass(); superClass != Object.class; superClass = superClass.getSuperclass()){
+			try {
+				return superClass.getDeclaredField(filedName);
+			} catch (NoSuchFieldException e) {
+				//Field 不在当前类定义, 继续向上转型
+			}
+		}
+		return null;
+	}
